@@ -94,6 +94,12 @@ tr {
   color: var(--grey);
   font-size: 12px;
   text-align: left;
+  border-radius: 2em;
+}
+
+tr:not(:first-child):hover {
+  background-color: var(--dark-grey);
+  cursor: pointer;
 }
 
 th:nth-child(n+4),
@@ -107,6 +113,13 @@ td {
 
 tr img {
   width: 3em;
+  height: 3em;
+  object-fit: cover;
+}
+
+tr img.empty {
+  object-fit: none;
+  background-color: var(--dark-grey);
 }
 
 td.name {
@@ -130,6 +143,10 @@ td.name {
     align-items: center;
     justify-content: flex-start;
     gap: 1em;
+  }
+
+  .header__description span:not(:first-child) {
+    display: inline-block;
   }
   
   /* Playlist */

@@ -5,6 +5,7 @@
   --dark: #151515;
   --turqoise: #66e5bf;
   --grey: rgba(255,255,255,.6);
+  --dark-grey: rgba(255,255,255,.3);
   --green: #1DB954;
 }
 
@@ -18,4 +19,16 @@ body {
   font-family: 'Montserrat';
   background-color: var(--dark);
   color: var(--white);
+}
+
+::-webkit-scrollbar {
+  width: .8em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--dark-grey);
 }
