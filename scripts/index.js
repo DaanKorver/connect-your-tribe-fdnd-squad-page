@@ -24,7 +24,7 @@ async function fillPlaylist() {
         const className = memberData[memberData.length-1] ? '' : 'empty'
         const image = td[i].querySelector('img')
         const span = td[i].querySelector('span')
-        span.innerText = memberData[i - 1]
+        span.innerText = memberData[i]
         image.src = avatar
         if(className) image.classList.add(className)
       } else {
