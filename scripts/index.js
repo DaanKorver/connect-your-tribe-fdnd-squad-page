@@ -17,11 +17,9 @@ async function fillPlaylist() {
     const fullName = `${member.name} ${member.prefix} ${member.surname}`
     const githubHandle = getGithubHandle(member.githubHandle)
     const squad = await getSquad(member.squadId)
-    const memberData = [fullName, squad, githubHandle, member.url, member.avatar]
+    const memberData = [index + 1, fullName, squad, githubHandle, member.url, member.avatar]
     for (let i = 0; i < td.length; i++) {
-      if(i === 0) {
-        td[i].innerText = index+1
-      } else if(td[i].classList.contains('name')) {
+      if(td[i].classList.contains('name')) {
         const avatar = memberData[memberData.length-1] || './assets/empty.svg'
         const className = memberData[memberData.length-1] ? '' : 'empty'
         const image = td[i].querySelector('img')
@@ -29,7 +27,9 @@ async function fillPlaylist() {
         span.innerText = memberData[i - 1]
         image.src = avatar
         if(className) image.classList.add(className)
-      } else td[i].innerText = memberData[i - 1]
+      } else {
+        td[i].innerText = memberData[i]
+      }
     }
     playlistEl.addEventListener('click', ()=>{
       navigate(member.memberId)
