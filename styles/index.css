@@ -1,0 +1,147 @@
+/* Playlist Header */
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: left;
+  background: linear-gradient(to bottom, var(--turqoise), var(--dark) 65%);
+  padding: 3em 2em 0 2em;
+  margin-bottom: 2em;
+}
+
+header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+header img {
+  margin: 0 auto;
+  margin-bottom: 1em;
+  width: 10em;
+}
+
+.header__description {
+  display: flex;
+  align-items: center;
+  gap: .3em;
+  align-self: flex-start;
+  margin-right: auto;
+  margin-bottom: 1em;
+}
+
+.header__info p:first-child {
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.header__description span:first-child {
+  font-weight: bold;
+}
+
+.header__description span:not(:first-child) {
+  display: none;
+}
+
+.seperator {
+  display: inline-block;
+  width: .3em;
+  height: .3em;
+  background-color: var(--white);
+  border-radius: 50%;
+}
+
+.play {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background-color: var(--green);
+  position: relative;
+  margin-left: auto;
+  margin-right: 2em;
+  margin-bottom: 1em;
+}
+
+.play::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: .7em solid transparent;
+  border-bottom: .7em solid transparent;
+  border-left: 1.3em solid var(--white);
+  left: 55%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+/* Playlist */
+
+table {
+  width: calc(100% - (2*1em));
+  margin: 0 auto;
+  border-collapse: collapse; 
+  border-spacing: 2em 0;
+}
+
+table tr:first-child th {
+  border-bottom: 1px solid var(--grey);
+  padding-bottom: 1em;
+}
+
+tr {
+  color: var(--grey);
+  font-size: 12px;
+  text-align: left;
+}
+
+th:nth-child(n+4),
+td:nth-child(n+4) {
+  display: none;
+}
+
+td {
+  padding: 1em 0;
+}
+
+tr img {
+  width: 3em;
+}
+
+td.name {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+@media (min-width: 48em) {
+  /* Playlist header */
+  header img {
+    margin: 0;
+    width: 14em;
+  }
+  
+  header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1em;
+  }
+  
+  /* Playlist */
+  th:nth-child(0n+4),
+  td:nth-child(0n+4) {
+    display: table-cell;
+  }
+}
+
+@media (min-width: 55em) {
+  th:nth-child(0n+5),
+  td:nth-child(0n+5) {
+    display: table-cell;
+  }
+}
