@@ -1,5 +1,5 @@
 # 👨‍🎓 FDND Squadpage
-> Visual komt hier
+<img src="https://github.com/DaanKorver/connect-your-tribe-fdnd-squad-page/blob/main/assets/figma_01.jpg"/>
 
 ## 📚 Inhoudsopgave
 
