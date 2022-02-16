@@ -1,4 +1,17 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+:root {
+  --white: #fff;
+  --dark: #151515;
+  --turqoise: #66e5bf;
+  --grey: rgba(255,255,255,.6);
+  --dark-grey: rgba(255,255,255,.3);
+  --green: #1DB954;
+}
 
 * {
   margin: 0;
@@ -8,4 +21,21 @@
 
 body {
   font-family: 'Montserrat';
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+/*--------------------------------------------------------------
+# Custom Scrollbar
+--------------------------------------------------------------*/
+::-webkit-scrollbar {
+  width: .8em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--dark-grey);
 }
