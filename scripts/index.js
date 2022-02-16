@@ -49,7 +49,7 @@ async function fillPlaylist() {
         td[i].innerText = memberData[i]
       }
     }
-    playlistEl.addEventListener('click', ()=>{
+    song.querySelector('tr').addEventListener('click', ()=>{
       navigate(member.memberId)
     })
     playlistEl.appendChild(song)
