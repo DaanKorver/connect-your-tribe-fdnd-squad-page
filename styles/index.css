@@ -1,4 +1,6 @@
-/* Playlist Header */
+/*--------------------------------------------------------------
+# PlayList Header
+--------------------------------------------------------------*/
 
 header {
   display: flex;
@@ -11,10 +13,12 @@ header {
   margin-bottom: 2em;
 }
 
+/* Header Title */
 header h1 {
   font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
+/* Header Image */
 header img {
   margin: 0 auto;
   margin-bottom: 1em;
