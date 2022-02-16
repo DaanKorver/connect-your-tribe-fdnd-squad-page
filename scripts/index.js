@@ -1,14 +1,32 @@
+//Variables
 const songEl = document.querySelector('template')
 const playlistEl = document.querySelector('table')
 
+//Functionality
 fillPlaylist()
 
+
+//Functions
+
+/**
+ * Retrieves all of the members from the FDND API
+ * 
+ * @async
+ * @function getMembers
+ * @returns {Object[]} Array with members from FDND tribe
+ */
 async function getMembers() {
   const req = await fetch('https://tribe.api.fdnd.nl/v1/member')
   const res = await req.json()
   return res.data.filter(student => student.squadId === 1)
 }
 
+/**
+ * Fills the table(playlist) element with rows(songs) per member from the API
+ * 
+ * @async
+ * @function fillPlaylist
+ */
 async function fillPlaylist() {
   const members = await getMembers()
   members.forEach(async (member, index)=>{
@@ -38,16 +56,36 @@ async function fillPlaylist() {
   })
 }
 
+/**
+ * Navigate to the detail page
+ * 
+ * @function navigate
+ * @param {number} memberId The id that is gonna be used to navigate to the detail page
+ */
 function navigate(memberId) {
   window.location = `detail.html?id=${memberId}`
 }
 
+/**
+ * Gets the type of squad
+ * 
+ * @function getSquad
+ * @param {*} squadId the id of the squad
+ * @returns {String} name of the squad
+ */
 async function getSquad(squadId) {
   const req = await fetch('https://tribe.api.fdnd.nl/v1/squad')
   const res = await req.json()
   return res.data.find(squad => squad.squadId == squadId).name
 }
 
+/**
+ * Sanitizes the github handle
+ * 
+ * @function getGithubHandle
+ * @param {*} handle The github handle. Can be a link or just the name
+ * @returns {String} Github handle + @ sign
+ */
 function getGithubHandle(handle) {
   if(handle === '') handle = 'FDND'
   return `@${handle.replace(/https:\/\/github\.com\//gm, '')}`
