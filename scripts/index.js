@@ -102,6 +102,12 @@ function hidePreloader() {
   },1200)
 }
 
+/**
+ * Shuffles to get a random member from the API
+ * 
+ * @async
+ * @function shuffle
+ */
 async function shuffle() {
   const members = await getMembers()
   const randomOffset = Math.floor(Math.random() * members.length)
@@ -109,6 +115,11 @@ async function shuffle() {
   navigate(randomMemberId)
 }
 
+/**
+ * Searchs for members from the playlist
+ * 
+ * @function search
+ */
 function search() {
   const searchValue = this.value.toLowerCase()
   if(this.value === '') {
