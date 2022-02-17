@@ -1,6 +1,7 @@
 //Variables
 const songEl = document.querySelector('template')
 const playlistEl = document.querySelector('table')
+const preloader = document.querySelector('.preloader')
 
 //Functionality
 fillPlaylist()
@@ -34,7 +35,7 @@ async function fillPlaylist() {
     const td = song.querySelectorAll('td')
     const fullName = `${member.name} ${member.prefix} ${member.surname}`
     const githubHandle = getGithubHandle(member.githubHandle)
-    const squad = await getSquad(member.squadId)
+    const squad = 'FDND Founder' //Hardcoded otherwise it makes to much request to the /squad endpoint
     const memberData = [index + 1, fullName, squad, githubHandle, member.url, member.avatar]
     for (let i = 0; i < td.length; i++) {
       if(td[i].classList.contains('name')) {
@@ -54,6 +55,7 @@ async function fillPlaylist() {
     })
     playlistEl.appendChild(song)
   })
+  hidePreloader()
 }
 
 /**
@@ -67,19 +69,6 @@ function navigate(memberId) {
 }
 
 /**
- * Gets the type of squad
- * 
- * @function getSquad
- * @param {*} squadId the id of the squad
- * @returns {String} name of the squad
- */
-async function getSquad(squadId) {
-  const req = await fetch('https://tribe.api.fdnd.nl/v1/squad')
-  const res = await req.json()
-  return res.data.find(squad => squad.squadId == squadId).name
-}
-
-/**
  * Sanitizes the github handle
  * 
  * @function getGithubHandle
@@ -89,4 +78,17 @@ async function getSquad(squadId) {
 function getGithubHandle(handle) {
   if(handle === '') handle = 'FDND'
   return `@${handle.replace(/https:\/\/github\.com\//gm, '')}`
+}
+
+/**
+ * Hides the preloader
+ * 
+ * @function hidePreloader
+ */
+function hidePreloader() {
+  setTimeout(()=>{
+    document.body.style.overflow = 'auto'
+    preloader.style.opacity = 0
+    preloader.style.pointerEvents = 'none'
+  },1200)
 }

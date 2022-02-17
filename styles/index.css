@@ -2,6 +2,10 @@
 # PlayList Header
 --------------------------------------------------------------*/
 
+body {
+  overflow: hidden;
+}
+
 header {
   display: flex;
   justify-content: center;
