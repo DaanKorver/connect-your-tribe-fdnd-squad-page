@@ -59,7 +59,7 @@ header img {
   border-radius: 50%;
 }
 
-.play {
+.play-button {
   width: 3em;
   height: 3em;
   border-radius: 50%;
@@ -70,7 +70,7 @@ header img {
   margin-bottom: 1em;
 }
 
-.play::before {
+.play-button::before {
   content: "";
   position: absolute;
   display: block;
@@ -143,7 +143,9 @@ td.name {
 }
 
 @media (min-width: 48em) {
-  /* Playlist header */
+/*--------------------------------------------------------------
+# Playlist Header
+----------------------------------------------------------------*/
   header img {
     margin: 0;
     width: 14em;
@@ -160,7 +162,9 @@ td.name {
     display: inline-block;
   }
   
-  /* Playlist */
+/*--------------------------------------------------------------
+# Playlist
+----------------------------------------------------------------*/
   th:nth-child(0n+4),
   td:nth-child(0n+4) {
     display: table-cell;
