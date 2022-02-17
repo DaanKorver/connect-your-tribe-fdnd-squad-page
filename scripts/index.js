@@ -2,9 +2,15 @@
 const songEl = document.querySelector('template')
 const playlistEl = document.querySelector('table')
 const preloader = document.querySelector('.preloader')
+const playBtn = document.querySelector('.play-button')
+const searchBar = document.getElementById('search')
+let membersEls
 
 //Functionality
 fillPlaylist()
+
+playBtn.addEventListener('click', shuffle)
+searchBar.addEventListener('keyup', search)
 
 
 //Functions
@@ -33,7 +39,7 @@ async function fillPlaylist() {
   members.forEach(async (member, index)=>{
     const song = songEl.content.cloneNode(true)
     const td = song.querySelectorAll('td')
-    const fullName = `${member.name} ${member.prefix} ${member.surname}`
+    const fullName = `${member.name}${member.prefix ? member.prefix : ' '}${member.surname}`
     const githubHandle = getGithubHandle(member.githubHandle)
     const squad = 'FDND Founder' //Hardcoded otherwise it makes to much request to the /squad endpoint
     const memberData = [index + 1, fullName, squad, githubHandle, member.url, member.avatar]
@@ -50,11 +56,14 @@ async function fillPlaylist() {
         td[i].innerText = memberData[i]
       }
     }
-    song.querySelector('tr').addEventListener('click', ()=>{
+    const tr = song.querySelector('tr')
+    tr.addEventListener('click', ()=>{
       navigate(member.memberId)
     })
+    tr.dataset.name = fullName
     playlistEl.appendChild(song)
   })
+  membersEls = document.querySelectorAll('[data-name]')
   hidePreloader()
 }
 
@@ -91,4 +100,29 @@ function hidePreloader() {
     preloader.style.opacity = 0
     preloader.style.pointerEvents = 'none'
   },1200)
+}
+
+async function shuffle() {
+  const members = await getMembers()
+  const randomOffset = Math.floor(Math.random() * members.length)
+  const randomMemberId = members.find((member, index) => index == randomOffset).memberId
+  navigate(randomMemberId)
+}
+
+function search() {
+  const searchValue = this.value.toLowerCase()
+  if(this.value === '') {
+    membersEls.forEach(member => {
+      member.style.display = 'table-row'
+    })
+  } else {
+    membersEls.forEach(member => {
+      const name = member.dataset.name.toLowerCase()
+      if(name.includes(searchValue)) {
+        member.style.display = 'table-row'
+      } else {
+        member.style.display = 'none'
+      }
+    })
+  }
 }
