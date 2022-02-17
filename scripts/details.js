@@ -7,15 +7,16 @@ const titleName = document.querySelector('.banner h1');
 const personDescription = document.querySelector('.banner p');
 const personalImages = document.querySelectorAll('.personal-info img');
 
-
 render()
 
+// Get data according to ID
 async function getMemberById() {
     const req = await fetch('https://tribe.api.fdnd.nl/v1/member');
     const res = await req.json();
     return res.data.find(student => student.memberId == id);
 }
 
+// Render the according data
 async function render() {
     const member = await getMemberById()
     const avatar = member.avatar !== '' ? member.avatar : 'https://source.unsplash.com/random/1920x1080';

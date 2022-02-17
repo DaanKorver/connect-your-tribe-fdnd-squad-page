@@ -46,7 +46,7 @@ main {
 
 .banner {
     background-size: cover;
-    height: 30vh;
+    height: 40vh;
     position: relative;
     display: flex;
     align-items: end;
@@ -109,7 +109,7 @@ main {
 /* Banner Content Title */
 .banner-content h1 {
     /* font-size: 4rem; */
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3.5rem)
 }
 
 /* Banner Content Paragraph */
@@ -199,4 +199,33 @@ aside ul li img {
     height: auto;
     border-radius: 50%;
     margin-right: .5rem;
+}
+
+/*--------------------------------------------------------------
+# Media Query's
+--------------------------------------------------------------*/
+
+@media (min-width: 48rem) {
+    .banner-content p {
+        max-width: 50%;
+    }
+
+    aside {
+        display: block;
+    }
+}
+
+@media (min-width: 60rem) {
+
+    main {
+        margin-right: 250px;
+    }
+
+    aside {
+        display: block;
+    }
+
+    .banner-content p {
+        max-width: 50%;
+    }
 }
