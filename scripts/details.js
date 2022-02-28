@@ -11,6 +11,8 @@ const personalInfoName = document.querySelector('#personal-info-name');
 const personalInfoSocial = document.querySelector('#personal-info-social');
 const personalInfoUrl = document.querySelector('#personal-info-url');
 
+const sidebar = document.querySelector('aside ul')
+
 render();
 
 // Get data according to ID
@@ -18,6 +20,21 @@ async function getMemberById() {
     const req = await fetch('https://tribe.api.fdnd.nl/v1/member');
     const res = await req.json();
     return res.data.find(student => student.memberId == id);
+}
+
+async function getRandomMembers(amount) {
+    const req = await fetch('https://tribe.api.fdnd.nl/v1/member')
+    const res = await req.json()
+    const members = res.data.filter(student => student.squadId === 1)
+    let randomMembers = []
+    while(randomMembers.length < amount) {
+        const randomIndex = Math.floor(Math.random() * members.length)
+        const member = members[randomIndex]
+        if(!randomMembers.includes(member)) {
+            randomMembers.push(member)
+        }
+    }
+    return randomMembers
 }
 
 // Render the according data
@@ -37,4 +54,22 @@ async function render() {
     personalInfoUrl.innerText = `${member.url}`;
 
     bannerImage.src = avatar;
+
+    // Fill sidebar
+    const randomMembers = await getRandomMembers(5)
+    randomMembers.forEach(member=>{
+        sidebar.insertAdjacentHTML('beforeend', 
+        `
+        <li class="friend" data-id='${member.memberId}'>
+            <img src="${member.avatar || './assets/detailpage/user.png'}"/>
+            <p>${member.name}</p>
+        </li> 
+        `)
+    })
+    document.querySelectorAll('.friend').forEach(friend=>{
+        friend.addEventListener('click', function() {
+            const id = this.dataset.id
+            window.location = `detail.html?id=${id}`
+        })
+    })
 }

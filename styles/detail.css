@@ -196,8 +196,9 @@ aside ul li p {
 }
 
 aside ul li img {
-    width: 18%;
-    height: auto;
+    width: 2.5em;
+    height: 2.5em;
+    object-fit: cover;
     border-radius: 50%;
     margin-right: .5rem;
 }
