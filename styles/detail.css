@@ -140,6 +140,7 @@ main {
 .personal-info ul li {
     display: flex;
     margin-bottom: 1rem;
+    align-items: center;
 }
 
 .personal-info ul li img {
