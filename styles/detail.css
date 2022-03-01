@@ -83,13 +83,23 @@ main {
 .banner-content div {
     display: flex;
     align-items: center;
+    gap: .5em;
 }
 
-.banner-content > div > img {
-    width: 20px;
-    height: auto;
+.banner-content .checkmark {
+    width: 1.5em;
+    height: 1.5em;
+    background-color: #0085FF;
     border-radius: 50%;
-    margin-right: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-content .checkmark::before {
+    content: '\2713';
+    color: #fff;
+    font-size: 1.3em;
 }
 
 .banner-content > div > img::before {
