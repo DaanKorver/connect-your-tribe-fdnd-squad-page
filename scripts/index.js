@@ -4,7 +4,7 @@ const playlistEl = document.querySelector('table')
 const preloader = document.querySelector('.preloader')
 const playBtn = document.querySelector('.play-button')
 const searchBar = document.getElementById('search')
-let membersEls
+let membersEls = null
 
 //Functionality
 fillPlaylist()
@@ -43,6 +43,7 @@ async function fillPlaylist() {
     const githubHandle = getGithubHandle(member.githubHandle)
     const squad = 'FDND Founder' //Hardcoded otherwise it makes to much request to the /squad endpoint
     const memberData = [index + 1, fullName, squad, githubHandle, member.url, member.avatar]
+    //Loop through all the td inside a tr to fill them with data
     for (let i = 0; i < td.length; i++) {
       if(td[i].classList.contains('name')) {
         const avatar = memberData[memberData.length-1] || './assets/empty.svg'
