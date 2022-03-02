@@ -30,7 +30,7 @@ async function getRandomMembers(amount) {
     while(randomMembers.length < amount) {
         const randomIndex = Math.floor(Math.random() * members.length)
         const member = members[randomIndex]
-        if(!randomMembers.includes(member)) {
+        if(!randomMembers.includes(member) && member.memberId != id) {
             randomMembers.push(member)
         }
     }
